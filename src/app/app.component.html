@@ -3,10 +3,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <app-states-list></app-states-list>
+      <app-states-list
+        [stateListData]="stateList"
+        [callbackFunction]="myCallbackFunction"
+      ></app-states-list>
     </div>
     <div class="col">
-      <app-states-chart></app-states-chart>
+      <app-states-chart [stateSelected]="stateSelected"></app-states-chart>
     </div>
   </div>
 </div>

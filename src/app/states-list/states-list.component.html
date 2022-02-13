@@ -4,12 +4,23 @@
   <li
     class="list-group-item d-flex justify-content-between align-items-center"
     *ngFor="
-      let state of stateList | paginate: { itemsPerPage: 10, currentPage: p };
+      let state of stateListData
+        | paginate: { itemsPerPage: 6, currentPage: p };
       let i = index
     "
   >
-    ({{ state.state }}) {{ state.name }}
-    <Button class="btn btn-sm btn-dark">Show Cases</Button>
+    <p>
+      <b>({{ state.state }}) {{ state.name }}</b>
+      <br />
+      <a href="{{ state.covid19Site }}">Visit Now</a>
+    </p>
+
+    <Button
+      type="button"
+      class="btn btn-sm btn-dark"
+      (click)="setStateValue(state.state)"
+      >Show Cases</Button
+    >
   </li>
 </ul>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>

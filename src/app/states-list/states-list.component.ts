@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CovidApiService } from '../shared/services/covid-api.service';
 
 @Component({
@@ -7,21 +7,16 @@ import { CovidApiService } from '../shared/services/covid-api.service';
   styleUrls: ['./states-list.component.css'],
 })
 export class StatesListComponent implements OnInit {
-  stateList: any = [];
+  @Input() stateListData: any;
+  @Input() callbackFunction: any;
+
   p: number = 1;
 
   constructor(public covidApiService: CovidApiService) {}
 
-  ngOnInit() {
-    this.getAllStates();
-  }
+  ngOnInit() {}
 
-  getAllStates() {
-    this.covidApiService.getAllStates().subscribe((res) => {
-      this.stateList = res;
-      this.stateList.forEach((element: any) => {
-        console.log(JSON.stringify(element.state + ' ' + element.name));
-      });
-    });
+  setStateValue(args: string) {
+    this.callbackFunction(args);
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { Subject } from 'rxjs';
 import { CovidApiService } from '../shared/services/covid-api.service';
 @Component({
   selector: 'app-states-chart',
@@ -8,25 +9,33 @@ import { CovidApiService } from '../shared/services/covid-api.service';
 })
 export class StatesChartComponent implements OnInit {
   covidStateCase: any;
-  constructor(private covidApiService: CovidApiService) {}
-
-  ngOnInit() {
-    this.getStateCases();
+  @Input() stateSelected: any;
+  public static yourString: Subject<string> = new Subject<string>();
+  myChart: any;
+  constructor(private covidApiService: CovidApiService) {
+    StatesChartComponent.yourString.subscribe((res) => {
+      console.log('update : ' + JSON.stringify(res));
+      this.myChart.destroy();
+      this.getStateCases(res);
+    });
   }
 
-  getStateCases() {
-    this.covidApiService.getStateCases('al').subscribe((res) => {
-      console.log('State Details ' + JSON.stringify(res));
+  ngOnInit() {
+    this.getStateCases(this.stateSelected);
+  }
+
+  getStateCases(stateCase: string) {
+    this.covidApiService.getStateCases(stateCase).subscribe((res) => {
       this.covidStateCase = res;
       this.buildChart(
         this.covidStateCase.positive,
         this.covidStateCase.negative,
-        this.covidStateCase.death * 20
+        this.covidStateCase.death * 10
       );
     });
   }
   buildChart(val1: number, val2: number, val3: number) {
-    var myChart = new Chart('myChart', {
+    this.myChart = new Chart('myChart', {
       type: 'bar',
       data: {
         labels: ['Positive Cases', 'Negative Cases', 'Death Reports'],
