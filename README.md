@@ -1,4 +1,4 @@
-# CovidCasesApp
+# Covid 19 Cases Tracker App
 
 [![covid19-angular-app.png](https://i.postimg.cc/xdp9NG38/covid19-angular-app.png)](https://postimg.cc/PLDgBwcn)
 
