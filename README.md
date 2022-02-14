@@ -1,6 +1,6 @@
-# CovidCasesApp
+# Covid 19 Cases Tracker App
 
-[![angular-covid19-tracker.png](https://i.postimg.cc/c4t6FdWL/angular-covid19-tracker.png)](https://postimg.cc/JGm1nVtf)
+[![covid19-angular-app.png](https://i.postimg.cc/xdp9NG38/covid19-angular-app.png)](https://postimg.cc/PLDgBwcn)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
 
