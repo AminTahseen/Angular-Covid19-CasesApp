@@ -16,7 +16,7 @@ export class StatesListComponent implements OnInit {
 
   ngOnInit() {}
 
-  setStateValue(args: string) {
-    this.callbackFunction(args);
+  setStateValue(args: string, argsName: string) {
+    this.callbackFunction(args, argsName);
   }
 }

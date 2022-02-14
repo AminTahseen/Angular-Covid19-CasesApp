@@ -10,7 +10,10 @@ import { CovidApiService } from '../shared/services/covid-api.service';
 export class StatesChartComponent implements OnInit {
   covidStateCase: any;
   @Input() stateSelected: any;
+  stateSelectedName: any;
   public static yourString: Subject<string> = new Subject<string>();
+  public static stateString: Subject<string> = new Subject<string>();
+
   myChart: any;
   constructor(private covidApiService: CovidApiService) {
     StatesChartComponent.yourString.subscribe((res) => {
@@ -18,9 +21,13 @@ export class StatesChartComponent implements OnInit {
       this.myChart.destroy();
       this.getStateCases(res);
     });
+    StatesChartComponent.stateString.subscribe((res) => {
+      this.stateSelectedName = res;
+    });
   }
 
   ngOnInit() {
+    this.stateSelectedName = 'California';
     this.getStateCases(this.stateSelected);
   }
 

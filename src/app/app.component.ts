@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'Covid-CasesApp';
   stateList: any = [];
   stateSelected: any = 'ca';
+  stateName: any = 'California';
 
   constructor(public covidApiService: CovidApiService) {}
 
@@ -23,9 +24,11 @@ export class AppComponent {
       this.stateList = res;
     });
   }
-  myCallbackFunction(args: string) {
+  myCallbackFunction(args: string, args2: string) {
     //callback code here
     this.stateSelected = args.toLowerCase();
+    this.stateName = args2;
     StatesChartComponent.yourString.next(this.stateSelected);
+    StatesChartComponent.stateString.next(this.stateName);
   }
 }
